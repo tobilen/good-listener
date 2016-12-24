@@ -5,8 +5,14 @@
  * @return {Boolean}
  */
 exports.node = function(value) {
+    function isHTMLElement(obj) {
+        if(obj instanceof HTMLElement) return true;
+        else return (typeof obj==="object") &&
+            (obj.nodeType===1) && (typeof obj.style === "object") &&
+            (typeof obj.ownerDocument ==="object");
+    }
     return value !== undefined
-        && value instanceof HTMLElement
+        && isHTMLElement(value)
         && value.nodeType === 1;
 };
 
